@@ -5,14 +5,16 @@ namespace :victoire do
         DESC
         task :fetch do
             on roles(:app) do
-                execute "cd #{release_path} && php " + fetch(:symfony_console_path) + " --env=prod victoire:ui:fetchAssets"
+                if fetch(:rollbar_token)
+                    execute "cd #{release_path} && php " + fetch(:symfony_console_path) + " --env=prod victoire:ui:fetchAssets"
+                end
             end
         end
     end
 end
 
 namespace :bazinga do
-    namespace :js-translation do
+    namespace :js_translation do
         desc <<-DESC
             Dumps all JS translation files to the filesystem
         DESC
@@ -25,13 +27,14 @@ namespace :bazinga do
 end
 
 namespace :fos do
-    namespace :js-routing do
-    desc <<-DESC
-        Dumps exposed routes to the filesystem
-    DESC
-    task :dump do
-        on roles(:app) do
-            execute "cd #{release_path} && php " + fetch(:symfony_console_path) + " --env=prod fos:js-routing:dump --target=web/js/fos_js_routes_prod.js"
+    namespace :js_routing do
+        desc <<-DESC
+            Dumps exposed routes to the filesystem
+        DESC
+        task :dump do
+            on roles(:app) do
+                execute "cd #{release_path} && php " + fetch(:symfony_console_path) + " --env=prod fos:js-routing:dump --target=web/js/fos_js_routes_prod.js"
+            end
         end
     end
 end

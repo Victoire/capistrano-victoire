@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'capistrano-victoire'
-  spec.version       = '0.0.1'
+  spec.version       = '0.0.6'
   spec.authors       = ['Leny Bernard']
   spec.email         = ['erwan@victoire.com']
   spec.description   = %q{Victoire tasks for Capistrano 3.x}
