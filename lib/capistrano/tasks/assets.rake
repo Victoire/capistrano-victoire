@@ -5,9 +5,7 @@ namespace :victoire do
         DESC
         task :fetch do
             on roles(:app) do
-                if fetch(:rollbar_token)
-                    execute "cd #{release_path} && php " + fetch(:symfony_console_path) + " --env=prod victoire:ui:fetchAssets --force"
-                end
+                execute "cd #{release_path} && php " + fetch(:symfony_console_path) + " --env=prod victoire:ui:fetchAssets --force"
             end
         end
     end
