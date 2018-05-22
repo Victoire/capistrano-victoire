@@ -31,7 +31,8 @@ namespace :fos do
         DESC
         task :dump do
             on roles(:app) do
-                execute "cd #{release_path} && php " + fetch(:symfony_console_path) + " --env=prod fos:js-routing:dump --target=web/js/fos_js_routes_prod.js"
+                execute "cd #{release_path} && php " + fetch(:symfony_console_path) + " --env=prod fos:js-routing:dump --target=web/js/fos_js_routes.js"
+                execute "cd #{release_path} && cp web/js/fos_js_routes.js web/js/fos_js_routes_prod.js"
             end
         end
     end
